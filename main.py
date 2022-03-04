@@ -81,15 +81,22 @@ def send_email_notification(event, context):
          event (dict): Event payload.
          context (google.cloud.functions.Context): Metadata for the event.
     """
-    #pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+
+    if 'data' in event:
+        pubsub_message = base64.b64decode(event['data']).decode('utf-8')
+        mail_dto = json.loads(pubsub_message)
+    else:
+        mail_dto=event
+    
     #log_message('DEBUG', 'Send mail event :' + json.dumps(event))
-    cloud_logger.debug('Send mail event :' + json.dumps(event))
+    cloud_logger.debug('Send mail event :' + json.dumps(mail_dto))
     #message_json = json.loads(pubsub_message)
     
     
     #sendgrid_mail('noreply@yourdomain.com', event['to'], event['subject'], event['body'])
-    
-    smtp_mail('noreply@yourdomain.com', event['to'], event['subject'], event['body'])
+        
+
+    smtp_mail('noreply@yourdomain.com', mail_dto['to'], mail_dto['subject'], mail_dto['body'])
 
 
-    cloud_logger.debug('Mail sent: ' + json.dumps(event))
+    cloud_logger.debug('Mail sent: ' + json.dumps(mail_dto))
