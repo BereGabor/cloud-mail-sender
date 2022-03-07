@@ -1,1 +1,2 @@
-gcloud pubsub topics publish projects/mlff-sb/topics/mlff-notifictiona-email --message="{\"to\":\"mail-test@gmail.com\",\"subject\":\"Test mail subject\",\"body\":\"Hello TEST from lci\"}"
+gcloud pubsub topics publish projects/mlff-sb/topics/mlff-notification-email --message="{\"to\":\"mail-test@gmail.com\",\"subject\":\"Test mail subject\",\"body\":\"Hello TEST from lci\"}"
+gcloud pubsub topics publish projects/mlff-sb/topics/mlff-notification-email --message='{"from":"sender@senderdomain.com", "to":"mail-test@gmail.com", "subject":"Test mail subject","body":"Hello TEST from CLI"}'

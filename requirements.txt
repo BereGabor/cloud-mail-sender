@@ -2,3 +2,6 @@
 # package>=version
 sendgrid
 google-cloud-logging
+flask==1.1.2
+google-cloud-error-reporting==1.1.1
+click>=7.0,<8.0

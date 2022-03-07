@@ -1,3 +1,4 @@
+from asyncio.log import logger
 import base64
 import json
 import os
@@ -82,12 +83,21 @@ def send_email_notification(event, context):
          context (google.cloud.functions.Context): Metadata for the event.
     """
 
+
     if 'data' in event:
         pubsub_message = base64.b64decode(event['data']).decode('utf-8')
         mail_dto = json.loads(pubsub_message)
     else:
         mail_dto=event
     
+    mailFrom = None
+    if 'from' in mail_dto:
+        mailFrom = mail_dto['from']
+        cloud_logger.info('From read from request :' +  mail_dto['from'])
+    else:
+        mailFrom= os.environ.get('MAIL_FROM', 'noreply@yourdomain.com').strip();
+        cloud_logger.info('Use default value for mail From: ' + mailFrom)
+
     #log_message('DEBUG', 'Send mail event :' + json.dumps(event))
     cloud_logger.debug('Send mail event :' + json.dumps(mail_dto))
     #message_json = json.loads(pubsub_message)
@@ -96,7 +106,7 @@ def send_email_notification(event, context):
     #sendgrid_mail('noreply@yourdomain.com', event['to'], event['subject'], event['body'])
         
 
-    smtp_mail('noreply@yourdomain.com', mail_dto['to'], mail_dto['subject'], mail_dto['body'])
+    smtp_mail(mailFrom, mail_dto['to'], mail_dto['subject'], mail_dto['body'])
 
 
     cloud_logger.debug('Mail sent: ' + json.dumps(mail_dto))
