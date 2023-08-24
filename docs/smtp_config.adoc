@@ -1,0 +1,22 @@
+= SMTP Config
+
+The config is read from ENV variables:
+
+[source,python]
+----
+mailServer    = os.environ.get('MAIL_SERVER', '').strip()
+mailPort      = os.environ.get('MAIL_PORT', '').strip()
+mailLocalHost = os.environ.get('MAIL_LOCAL_HOST', '').strip()
+mailForceTls  = os.environ.get('MAIL_FORCE_TLS', '').strip() == "TRUE"
+mailDebug     = os.environ.get('MAIL_DEBUG', '').strip() == "TRUE"
+----
+
+If the ENV variable is not set, the `mailServer` and `mailPort` get default values:
+
+----
+mailServer='mail.smtpbucket.com'
+mailPort=8025
+----
+
+This sample uses a dummy and very useful SMTP server to avoid real mail traffic.
+https://www.smtpbucket.com/emails 

@@ -1,0 +1,15 @@
+= Event structure
+
+Event could have a standard structure, where the 'data' element contains a base64 encoded request body, but it can process when the pure JSON is the event (as the test function creates an event in the GCP console).
+
+[source,json]
+----
+{
+        "from": "sender@senderdomain.com",
+        "to":"sample@gmail.com",
+        "subject":"Test mail subject",
+        "body":"Hello Gábor!\n \n Have a nice day! \n\n Best regards\nBere"
+}
+----
+
+`from` is optional. If 'from' is not set in the request, the system will use a default value.

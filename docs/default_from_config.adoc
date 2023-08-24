@@ -1,0 +1,10 @@
+= Default 'From' Configuration
+
+The code gets the default 'From' value from the environment variable.
+
+[source,python]
+----
+os.environ.get('MAIL_FROM', 'noreply@yourdomain.com').strip()
+----
+
+If the environment variable is missing, 'noreply@yourdomain.com' will be used.
