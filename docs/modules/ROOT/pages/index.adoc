@@ -4,6 +4,6 @@ Cloud function to send email based on pubsub event.
 
 == Contents:
 
-* link:event_structure.adoc[Event Structure]
-* link:default_from_config.adoc[Default 'From' Configuration]
-* link:smtp_config.adoc[SMTP Config]
+* xref:event_structure.adoc[Event Structure]
+* xref:default_from_config.adoc[Default 'From' Configuration]
+* xref:smtp_config.adoc[SMTP Config]
