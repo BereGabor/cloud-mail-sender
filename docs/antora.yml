@@ -1,3 +1,5 @@
 name: cloud-mail-sender
 title: Mail Sender cloud function (Pub/Sub)
 version: '0.1'
+nav:
+  - modules/ROOT/nav.adoc
